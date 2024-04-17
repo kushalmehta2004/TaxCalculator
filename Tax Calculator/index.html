@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tax Calculator</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+    integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+<body>
+    <button id="mode" onclick="changeMode()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16">
+        <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+      </svg></button>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="form-container">
+
+                    <h1 style="text-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.1)"> <b> Tax Calculator </b> </h1>
+
+                    <form id="taxForm" class="mt-5">
+
+                        <div class="form-group">
+                            <label for="grossIncome" class="form-label"> Enter gross annual income:
+                                <i class="bi bi-question-circle question-icon" data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    data-bs-title="Gross Annual Income is your total salary in a year before any deductions."></i>
+                            </label>
+
+                            <div class="input-group">
+                                <input type="text" id="grossIncome" name="grossIncome" class="form-control">
+                                <span class="error-icon input-group-text" title="Error message">
+                                    <i class="bi bi-exclamation-circle exclamation-icon" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" data-bs-title="Please enter only numerical value"></i>
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="extraIncome" class="form-label">Enter extra income:
+                                <i class="bi bi-question-circle question-icon" data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    data-bs-title="Additional income earned outside of one's regular salary or wages."></i>
+                            </label>
+
+                            <div class="input-group">
+                                <input type="text" id="extraIncome" name="extraIncome" class="form-control">
+                                <span class="error-icon input-group-text" title="Error message">
+                                    <i class="bi bi-exclamation-circle exclamation-icon" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" data-bs-title="Please enter numbers only"></i>
+                                </span>
+
+                                <span class="error-icon input-group-text" title="Error message"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age" class="form-label">Enter age group:
+                                <i class="bi bi-question-circle question-icon" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" data-bs-title="Your age group"></i>
+                            </label>
+
+                            <div class="input-group">
+                                <select id="age" name="age" class="form-select">
+                                    <option value="">Select Age</option>
+                                    <option value="<40">&lt;40</option>
+                                    <option value="40-59">&ge;40 &lt;60</option>
+                                    <option value="≥60">&ge;60</option>
+                                </select>
+                                <span class="error-icon input-group-text" title="Error message">
+                                    <i class="bi bi-exclamation-circle exclamation-icon" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" data-bs-title="Please select an age group"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deductions" class="form-label">Enter total applicable deductions:
+                                <i class="bi bi-question-circle question-icon" data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    data-bs-title="Applicable Deductions refer to certain expenses or allowances that can be subtracted from your gross income to reduce your taxable income."></i>
+                            </label>
+
+                            <div class="input-group">
+                                <input type="text" id="deductions" name="deductions" class="form-control">
+                                <span class="error-icon input-group-text" title="Error message">
+                                    <i class="bi bi-exclamation-circle exclamation-icon" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" data-bs-title="Please enter numbers only"></i>
+                                </span>
+
+                                <span class="error-icon input-group-text" title="Error message"></span>
+                            </div>
+                        </div>
+
+                        <div class="submit-btn">
+                            <button type="submit" class="btn btn-primary submit-btn-btn" style="margin-right:5px ;"> Submit </button>
+                            <button type="submit" class="btn btn-primary submit-btn-btn" style="margin-left:5px ;" onclick="reset()"> Reset </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="taxResultModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tax Calculation Result</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="taxResult"></div>
+                <div class="modal-body" id="taxResult2"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
